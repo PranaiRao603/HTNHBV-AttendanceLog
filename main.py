@@ -18,9 +18,10 @@ def menu():
     global function_call
     function_options = """
     1. Create student ID
-    2. Sign in
+    2. Sign in/out
+    3. Generate Report
     """
-    function_range = 2  # Amount of functions specified in the above line.
+    function_range = 3  # Amount of functions specified in the above line.
 
     print("HTNHBV Entry/Exit Monitor - ON")
 
@@ -42,6 +43,8 @@ def menu():
         create_student_id()
     elif function_call == 2:
         sign_in()
+    elif function_call == 3:
+        generate_report()
 
 
 def create_student_id():
@@ -56,6 +59,7 @@ def create_student_id():
 
 
 def sign_in():
+    global time_index
     while True:
         id_num = input("Please enter student ID number (or \'q\' to quit): ")
         if id_num == "q" or id_num == "Q":
@@ -78,11 +82,34 @@ def sign_in():
             change_data(this_row, 'status', 'OUT')
             change_data(this_row, 'time_out', datetime.now())
 
-            time_set = "{Sign In: " + get_data(this_row, 'time_in') + " Sign Out: " + get_data((this_row, 'time_out')) + "}"
+            time_set = "{Sign In: " + get_data(this_row, 'time_in') + " Sign Out: " + get_data(this_row, 'time_out') + \
+                       "}"
+
+            open_column = False
 
             for x in range(0, time_index):
                 this_column = 'time' + str(x)
-                    get_data()
+                if get_data(this_row, this_column) == "nan":
+                    open_column = this_column
+                    break
+
+            if not open_column:
+                this_column = 'time' + str(time_index)
+                add_column(this_column)
+                change_data(this_row, this_column, time_set)
+                clear_column('time_in')
+                clear_column('time_out')
+                time_index += 1
+
+            else:
+                change_data(this_row, open_column, time_set)
+                clear_column('time_in')
+                clear_column('time_out')
+    menu()
+
+
+def generate_report():
+    print("WARNING: CONSTRUCTION IN PROGRESS!")
 
 
 menu()

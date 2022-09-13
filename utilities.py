@@ -5,6 +5,8 @@ import pandas as pd
 
 csv_name = "log.csv"  # MUST BE CHANGED FOR OTHER APPLICATIONS!
 csv = pd.read_csv(csv_name)
+csv_length = len(csv)
+
 
 def int_cast_assert(s):
     try:
@@ -32,7 +34,16 @@ def add_column(column_name):
 def affirm(request):
     while True:
         i = input(request)
-        affirm = input("You entered \"" + i + "\" Is that correct? (y/n): ")
-        if affirm == "y" or affirm == "Y":
+        confirm = input("You entered \"" + i + "\" Is that correct? (y/n): ")
+        if confirm == "y" or confirm == "Y":
             break
     return i
+
+
+def clear_column(column_name):
+    for x in range(0, csv_length):
+        change_data(x, column_name, '')
+
+
+def delete_column(column_name):
+    csv.pop(column_name)

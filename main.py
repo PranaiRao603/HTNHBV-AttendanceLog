@@ -134,6 +134,14 @@ def logger():
             print(name + " was signed out at " + time_out)
 
 
+def get_row_from_name(name):
+    status_length = len(status)
+    for x in range(0, status_length):
+        if get_data(status, x, 'name') == name:
+            return x
+        # Else, the student does not exist and a fatal error will occur
+
+
 def generate_report():
     status_length = get_status_length()
     log_length = get_log_length()
@@ -142,6 +150,7 @@ def generate_report():
     file_name = "Attendance-Log_" + date + ".txt"
 
     present_list = []
+    error_list = []
     absent_list = []
 
     try:
@@ -166,18 +175,30 @@ def generate_report():
         if time_set != '':
             present_list.append("PRESENT: " + name + " -" + time_set + "\n")
         else:
-            absent_list.append("ABSENT: " + name + "\n")
+            if get_data(status, get_row_from_name(name), 'status') == "IN":
+                error_list.append("IN: " + name + " Signed in at: " +
+                                  get_data(status, get_row_from_name(name), 'time_in') + "\n")
+            else:
+                absent_list.append("ABSENT: " + name + "\n")
 
     present_list = sorted(present_list)
+    error_list = sorted(error_list)
     absent_list = sorted(absent_list)
 
     f = open(file_name, 'a')
+
     f.write("Present: \n\n")
     for x in range(0, len(present_list)):
         f.write(present_list[x])
+
+    f.write("\nSigned In: \n\n")
+    for x in range(0, len(error_list)):
+        f.write(error_list[x])
+
     f.write("\nAbsent: \n\n")
     for x in range(0, len(absent_list)):
         f.write(absent_list[x])
+
     f = open(file_name, 'r')
     f.close()
 

@@ -28,7 +28,7 @@ def menu():
     4. Delete all temporary data (to be done after report is generated)
     5. Shut down
     """
-    function_range = 3  # Amount of functions specified in the above line
+    function_range = 5  # Amount of functions specified in the above line
 
     print("HTNHBV Entry/Exit Monitor - ON")
 
@@ -52,6 +52,10 @@ def menu():
         logger()
     elif function_call == 3:
         generate_report()
+    elif function_call == 4:
+        delete_temp_data()
+    elif function_call == 5:
+        shut_down()
 
 
 def change_data(file_variable, file_name, row, column, data):
@@ -133,17 +137,21 @@ def logger():
 def generate_report():
     status_length = get_status_length()
     log_length = get_log_length()
+
     date = str(datetime.now().date())
     file_name = "Attendance-Log_" + date + ".txt"
 
+    present_list = []
+    absent_list = []
+
     try:
-        f = open(file_name, 'xt')
+        open(file_name, 'xt')
     except FileExistsError:
         while True:
             i = input("A report already exists for today. Would you like to replace it? (y/n): ")
             if i == "y" or i == "Y":
                 os.remove(file_name)
-                f = open(file_name, 'xt')
+                open(file_name, 'xt')
                 break
             else:
                 print("HTNHBV Entry/Exit Monitor - Shutting down...")
@@ -152,15 +160,65 @@ def generate_report():
         name = get_data(status, x, 'name')
         time_set = ''
         for y in range(0, log_length):
+            if get_data(log, y, name) == 'nan':
+                continue
             time_set += " " + get_data(log, y, name)
-        f = open(file_name, 'a')
-        if time_set != 'nan':
-            f.write("PRESENT: " + name + " -" + time_set + "\n")
+        if time_set != '':
+            present_list.append("PRESENT: " + name + " -" + time_set + "\n")
         else:
-            f.write("\nABSENT: " + name + "\n\n")
+            absent_list.append("ABSENT: " + name + "\n")
 
+    present_list = sorted(present_list)
+    absent_list = sorted(absent_list)
+
+    f = open(file_name, 'a')
+    f.write("Present: \n\n")
+    for x in range(0, len(present_list)):
+        f.write(present_list[x])
+    f.write("\nAbsent: \n\n")
+    for x in range(0, len(absent_list)):
+        f.write(absent_list[x])
     f = open(file_name, 'r')
     f.close()
+
+    print("Report generated!")
+    menu()
+
+
+def delete_temp_data():
+    status_length = get_status_length()
+    global log
+
+    affirm("""WARNING: Would you like to delete the data? (y/n): """)
+
+    # Clearing log
+    os.remove('time_log.csv')
+    open('time_log.csv', 'xt')
+    name_list = ""
+    for x in range(0, status_length):
+        data = get_data(status, x, 'name')
+        if data != "nan":
+            if x != status_length - 1:
+                name_list += get_data(status, x, 'name') + ","
+            else:
+                name_list += get_data(status, x, 'name')
+    f = open('time_log.csv', 'a')
+    f.write(name_list)
+    f.close()
+
+    # Clearing status
+    for x in range(0, status_length):
+        change_data(status, 'status.csv', x, 'status', 'OUT')
+        change_data(status, 'status.csv', x, 'time_in', '')
+        change_data(status, 'status.csv', x, 'time_out', '')
+
+    print("Temporary data cleared!")
+    menu()
+
+
+def shut_down():
+    print("Shutting down...")
+    print("HTNHBV Entry/Exit Monitor - OFF")
 
 
 menu()

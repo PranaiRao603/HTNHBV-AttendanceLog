@@ -11,6 +11,8 @@ import os
 log = pd.read_csv("time_log.csv")  # Opens CSV for storing complete data sets
 status = pd.read_csv("status.csv")  # Opens CSV for storing temporary data
 
+encoding = 20230001
+
 
 def get_log_length():
     return len(log)
@@ -74,7 +76,7 @@ def create_student_id():
     last_name = affirm("Please enter the student's last name: ")
     name = first_name + "_" + last_name
 
-    change_data(status, 'status.csv', status_length, 'code', status_length + 1)
+    change_data(status, 'status.csv', status_length, 'code', status_length + encoding)
     change_data(status, 'status.csv', status_length, 'name', name)
     change_data(status, 'status.csv', status_length, 'status', 'OUT')
 
@@ -101,7 +103,7 @@ def logger():
         else:
             id_num = int_cast_assert(id_num)
         try:
-            this_row = id_num - 1
+            this_row = id_num - encoding
             if this_row > status_length - 1:
                 raise AssertionError
         except AssertionError:
@@ -163,8 +165,8 @@ def generate_report():
                 open(file_name, 'xt')
                 break
             else:
-                print("HTNHBV Entry/Exit Monitor - Shutting down...")
-                return
+                print("HTNHBV Entry/Exit Monitor - Restarting...")
+                menu()
     for x in range(0, status_length):
         name = get_data(status, x, 'name')
         time_set = ''

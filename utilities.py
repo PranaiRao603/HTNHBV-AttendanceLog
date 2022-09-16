@@ -1,4 +1,4 @@
-# (c) Pranai Rao 2022
+# (c) 2022 Pranai Rao
 # Helpful utilities
 
 

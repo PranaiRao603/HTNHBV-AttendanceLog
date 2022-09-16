@@ -11,7 +11,7 @@ import os
 log = pd.read_csv("time_log.csv")  # Opens CSV for storing complete data sets
 status = pd.read_csv("status.csv")  # Opens CSV for storing temporary data
 
-encoding = 20230001
+encoding = 20220001
 
 
 def get_log_length():

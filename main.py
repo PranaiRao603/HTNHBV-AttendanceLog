@@ -1,4 +1,4 @@
-# (c) Pranai Rao 2022
+# (c) 2022 Pranai Rao
 # The purpose of this program is to create a log that logs in and out time.
 # This program is being built with a barcode interface in mind.
 # v.3.0.0

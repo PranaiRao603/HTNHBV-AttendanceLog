@@ -1,5 +1,5 @@
 # (c) Pranai Rao 2022
-# Personal utilities
+# Helpful utilities
 
 
 # Safely casts to integer data type

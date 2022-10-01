@@ -6,8 +6,16 @@
 def int_cast_assert(s):
     try:
         s = int(s)
-    except ValueError:
+    except ValueError or TypeError:
         print("\n\n\n\n\n\n\nERROR: Your input is invalid! Please enter an integer!")
+        while True:
+            s = input("Please enter an integer; a valid ID number: ")
+            try:
+                s = int(s)
+            except ValueError or TypeError:
+                print("\n\n\n\n\n\n\nERROR: Your input is invalid! Please enter an integer!")
+            else:
+                return s
     return s
 
 

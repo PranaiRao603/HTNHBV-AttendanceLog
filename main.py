@@ -106,6 +106,8 @@ def logger():
             this_row = id_num - encoding
             if this_row > status_length - 1:
                 raise AssertionError
+            elif this_row < 0:
+                raise AssertionError
         except AssertionError:
             print("ERROR: Student ID does not exist")
             continue

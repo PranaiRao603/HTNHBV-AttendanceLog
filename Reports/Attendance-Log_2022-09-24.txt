@@ -1,0 +1,34 @@
+Present: 
+
+PRESENT: Anikhaa_Nair - {Sign In: 2022-09-24 17:13:14.493706 Sign Out: 2022-09-24 18:53:09.842739}
+PRESENT: Anjana_Mureli - {Sign In: 2022-09-24 17:17:39.876960 Sign Out: 2022-09-24 18:48:36.066276}
+PRESENT: Arjun_Vardha - {Sign In: 2022-09-24 17:08:54.911655 Sign Out: 2022-09-24 18:49:15.522759}
+PRESENT: Deepthi_Bharath - {Sign In: 2022-09-24 17:10:27.126496 Sign Out: 2022-09-24 18:53:16.436384}
+PRESENT: Mathangi_Balakrishnan - {Sign In: 2022-09-24 17:10:37.044193 Sign Out: 2022-09-24 18:49:02.087117}
+PRESENT: Niya_Vardha - {Sign In: 2022-09-24 17:09:02.325819 Sign Out: 2022-09-24 18:49:11.154798}
+PRESENT: Rhiyaa_Sangaran - {Sign In: 2022-09-24 17:23:56.578064 Sign Out: 2022-09-24 18:48:58.241560}
+PRESENT: Shruti_Vijayakumar - {Sign In: 2022-09-24 17:10:09.123377 Sign Out: 2022-09-24 18:49:07.281152}
+
+Signed In: 
+
+IN: Chetana_Yella Signed in at: 2022-09-24 17:34:19.609248
+IN: Karthik_Raja Signed in at: 2022-09-24 17:08:47.172072
+IN: Maadhav_Rajesh Signed in at: 2022-09-24 17:10:55.285454
+IN: Pranav_Dasari Signed in at: 2022-09-24 17:17:10.483501
+IN: Pranav_Pakalapati Signed in at: 2022-09-24 17:34:22.020396
+IN: Pranav_Sriram Signed in at: 2022-09-24 17:09:52.329906
+IN: Sripathi_Bharath Signed in at: 2022-09-24 17:10:15.801892
+
+Absent: 
+
+ABSENT: Aalap_Nair
+ABSENT: Ananya_Shree
+ABSENT: Anikha_Prakash
+ABSENT: Arya_Nadar
+ABSENT: Ganak_Gopinath
+ABSENT: Ishan_Puvvala
+ABSENT: Pranav_Nair
+ABSENT: Prisha_Rao
+ABSENT: Rayaansh_Dhunna
+ABSENT: Shaila_Adhikari
+ABSENT: Udbhav_Kumaran
